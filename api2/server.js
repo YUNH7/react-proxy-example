@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const logger = require('morgan');
 const app = express(),
       bodyParser = require("body-parser");
       port = 3070;
@@ -11,6 +12,7 @@ const todos = [{
   isComplete: true
   }];
 
+app.use(logger(':method :url :status :res[content-length] - :response-time ms'))
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../my-app/build')));
 
